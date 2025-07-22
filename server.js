@@ -58,5 +58,5 @@ server.post('/login', async (request, reply) => { //login do user
 
 server.listen({
     host: '0.0.0.0',
-    port: 3333,
+    port: process.env.PORT ?? 3333,
 })
