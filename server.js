@@ -22,7 +22,7 @@ server.decorate('authenticate', async (request, reply) => {
 })
 
 server.post('/cadastrar', async () => { //criar usuario
-    const username = "cadastro teste"
+    const username = "teste"
     const pass = "123"
     const descr = "dev"
 

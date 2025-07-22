@@ -2,7 +2,7 @@ import { sql } from "./banco.js";
 import { randomUUID } from "node:crypto";
 
 export class bancoDados {
-  async createUser(username, passHashed, descr) { //nao permitir user com espaco
+  async createUser(username, passHashed, descr) { //PROXIMA ATT: nao permitir user com espaco
     //criação do usuario
     const id = randomUUID(); //id
     const usernameLowercase = username.toLowerCase()
