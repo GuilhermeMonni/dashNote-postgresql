@@ -1,0 +1,22 @@
+{
+  "name": "dashnote",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch --no-warnings server.js"
+  },
+  "keywords": [],
+  "author": "Guilherme Monni",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@fastify/jwt": "^9.1.0",
+    "@neondatabase/serverless": "^1.0.1",
+    "bcrypt": "^6.0.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.2.0",
+    "fastify": "^5.4.0"
+  }
+}
