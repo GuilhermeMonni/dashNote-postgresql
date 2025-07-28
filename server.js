@@ -26,7 +26,7 @@ server.post('/cadastrar', async (request, reply) => { //criar usuario
 
     const passHashed = await bcrypt.hash(password, 10)
 
-    const reqBanco = await banco.createUser(username, passHashed, descr)
+    const reqBanco = await banco.createUser(username, passHashed, description)
 
     console.log(`Usuário criado com sucesso. Seja bem vindo, ${username}!`);
 })
@@ -38,6 +38,7 @@ server.post('/login', async (request, reply) => { //login do user
     const logUser = await banco.verUser(usernameLowercase) //verifica o user digitado
 
     const login = await banco.loginUser(usernameLowercase) //buscar infos do user digitado
+
     if(!login){
         return reply.code(401).send({ message: 'Usuário incorreto!' })
     }
@@ -54,12 +55,12 @@ server.post('/login', async (request, reply) => { //login do user
 
     const token = server.jwt.sign({ id: login.id, username: login.username })
 
-    reply.send({token})
+    reply.send({token}) 
 })
 
 //server.delete()
 
 server.listen({
     host: '0.0.0.0',
-    port: process.env.PORT ?? 3333,
+    port: process.env.PORT ?? 3000,
 })
