@@ -21,12 +21,10 @@ server.decorate('authenticate', async (request, reply) => {
     }
 })
 
-server.post('/cadastrar', async () => { //criar usuario
-    const username = "teste"
-    const pass = "123"
-    const descr = "dev"
+server.post('/cadastrar', async (request, reply) => { //criar usuario
+    const {username, password, description} = request.body
 
-    const passHashed = await bcrypt.hash(pass, 10)
+    const passHashed = await bcrypt.hash(password, 10)
 
     const reqBanco = await banco.createUser(username, passHashed, descr)
 
@@ -34,7 +32,7 @@ server.post('/cadastrar', async () => { //criar usuario
 })
 
 server.post('/login', async (request, reply) => { //login do user
-    const {username, pass} = request.body
+    const {username, password} = request.body 
     const usernameLowercase = username.toLowerCase()
 
     const logUser = await banco.verUser(usernameLowercase) //verifica o user digitado
@@ -44,7 +42,12 @@ server.post('/login', async (request, reply) => { //login do user
         return reply.code(401).send({ message: 'Usuário incorreto!' })
     }
 
-    const passDigited = await bcrypt.compare(pass, login.password) //verifica senha digitada com a criptografada
+    if(!password || !login.password){
+        return reply.code(400).send({message: 'Senha ausente.'})
+    }
+
+    const passDigited = await bcrypt.compare(password, login.password) //verifica senha digitada com a criptografada
+
     if(!passDigited){
         return reply.code(401).send({ message: 'Senha incorreta!' })
     }
