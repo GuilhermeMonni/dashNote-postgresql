@@ -2,6 +2,7 @@ import fastify from 'fastify'
 import { bancoDados } from './bancoDados.js'
 import dotenv from 'dotenv'
 import fastifyJwt from '@fastify/jwt'
+import fastifyCookie from '@fastify/cookie'
 import bcrypt from 'bcrypt'
 
 dotenv.config()
@@ -10,16 +11,14 @@ const server = fastify()
 const banco = new bancoDados()
 
 server.register(fastifyJwt, { //add o plugin no server
-    secret: process.env.JWT_SECRET
-})
-
-server.decorate('authenticate', async (request, reply) => {
-    try{ //add a funcao authenticate para proteger rotas
-        await request.jwtVerify()
-    } catch(error){
-        reply.code(401).send({ message: 'Token inválido ou ausente' })
+    secret: process.env.JWT_SECRET,
+    cookie: {
+        cookieName: 'token',
+        signed: false
     }
 })
+
+server.register(fastifyCookie)
 
 server.post('/cadastrar', async (request, reply) => { //criar usuario
     const {username, password, description} = request.body
@@ -55,10 +54,17 @@ server.post('/login', async (request, reply) => { //login do user
 
     const token = server.jwt.sign({ id: login.id, username: login.username })
 
-    reply.send({token}) 
+    reply
+        .setCookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'lax',
+            path: '/'
+        })
+        .send({message: 'Login feito com sucesso'}) 
 })
 
-//server.delete()
+//falta o logout e excluir user
 
 server.listen({
     host: '0.0.0.0',
