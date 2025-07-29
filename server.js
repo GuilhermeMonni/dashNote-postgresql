@@ -64,7 +64,13 @@ server.post('/login', async (request, reply) => { //login do user
         .send({message: 'Login feito com sucesso'}) 
 })
 
-//falta o logout e excluir user
+server.post('/logout', (req, reply) => {
+  reply.clearCookie('token', { path: '/' })
+  reply.send({ message: 'Deslogado com sucesso' })
+})
+
+
+//falta excluir user
 
 server.listen({
     host: '0.0.0.0',
