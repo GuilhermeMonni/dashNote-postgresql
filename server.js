@@ -70,7 +70,18 @@ server.post('/logout', (req, reply) => {
 })
 
 
-//falta excluir user
+server.post('/delete', async (request, reply) => {
+    //apagar usuário
+    const {username, password, id} = request.body
+    const login = await banco.loginUser(username)
+    const passDigited = await bcrypt.compare(password, login.password) 
+
+    if(!passDigited){
+        return reply.code(401).send({ message: 'Senha incorreta!' })
+    }
+
+    banco.deleteUser(id)
+})
 
 server.listen({
     host: '0.0.0.0',

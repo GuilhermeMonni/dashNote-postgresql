@@ -27,12 +27,9 @@ export class bancoDados {
     return result[0]
   }
 
-  async deleteUser(username, pass) {
-    const password =
-      await sql`select password from users where username = ${user}`;
+  async deleteUser(id) { //deletar usuario
+    const delUser = await sql`delete from users where id = ${id}`
 
-    const id = await sql`select id from users where username = ${user}`;
-
-    console.log(password, id);
+    console.log('Usuário deletado com sucesso!');
   }
 }
