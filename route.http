@@ -25,3 +25,6 @@ Content-Type: application/json
     "password": "12345",
     "id": "4b0ec83d-393f-41dd-acb2-da87d3d6cc5a"
 }
+
+###
+GET http://localhost:3000/task

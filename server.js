@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import { bancoDados } from './bancoDados.js'
+import { tasks } from './tasks.js'
 import dotenv from 'dotenv'
 import fastifyJwt from '@fastify/jwt'
 import fastifyCookie from '@fastify/cookie'
@@ -9,6 +10,7 @@ dotenv.config()
 
 const server = fastify()
 const banco = new bancoDados()
+const task = new tasks()
 
 server.register(fastifyJwt, { //add o plugin no server
     secret: process.env.JWT_SECRET,
@@ -20,6 +22,7 @@ server.register(fastifyJwt, { //add o plugin no server
 
 server.register(fastifyCookie)
 
+//usuarios
 server.post('/cadastrar', async (request, reply) => { //criar usuario
     const {username, password, description} = request.body
 
@@ -81,6 +84,14 @@ server.post('/delete', async (request, reply) => {
     }
 
     banco.deleteUser(id)
+})
+
+//tarefas
+server.get('/task', async (request, reply) => {
+    const {username, id} = request.body
+
+    await task.lookTasks(id)
+    return reply.code(200).send({message: `Seja bem-vindo, ${username}. Boa sorte em suas tarefas.`})
 })
 
 server.listen({
