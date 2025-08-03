@@ -27,4 +27,10 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/task
+POST http://localhost:3000/task
+Content-Type: application/json
+
+{
+    "username": "nathalia",
+    "id": "af0780b3-1867-48ef-b6bd-fea8d2e2cd1f"
+}

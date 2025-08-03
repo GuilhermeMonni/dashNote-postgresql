@@ -87,11 +87,12 @@ server.post('/delete', async (request, reply) => {
 })
 
 //tarefas
-server.get('/task', async (request, reply) => {
+server.post('/task', async (request, reply) => { //buscar tarefas do usuario
     const {username, id} = request.body
+    let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
 
     await task.lookTasks(id)
-    return reply.code(200).send({message: `Seja bem-vindo, ${username}. Boa sorte em suas tarefas.`})
+    return reply.code(200).send({message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`})
 })
 
 server.listen({
