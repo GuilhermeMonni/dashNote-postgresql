@@ -20,6 +20,14 @@ server.register(fastifyJwt, { //add o plugin no server
     }
 })
 
+server.decorate('authenticate', async (request, reply) => {
+    try{
+        request.jwtVerify()
+    } catch(err){
+        reply.code(401).send({error: 'Não autorizado.'})
+    }
+})
+
 server.register(fastifyCookie)
 
 //usuarios
@@ -87,7 +95,7 @@ server.post('/delete', async (request, reply) => {
 })
 
 //tarefas
-server.post('/task', async (request, reply) => { //buscar tarefas do usuario
+server.post('/task', { preHandler: [server.authenticate] }, async (request, reply) => { //buscar tarefas do usuario
     const {username, id} = request.body
     let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
 
