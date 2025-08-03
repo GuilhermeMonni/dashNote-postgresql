@@ -75,13 +75,13 @@ server.post('/login', async (request, reply) => { //login do user
         .send({message: 'Login feito com sucesso'}) 
 })
 
-server.post('/logout', (req, reply) => {
+server.post('/logout', { preHandler: [server.authenticate] }, (req, reply) => {
   reply.clearCookie('token', { path: '/' })
   reply.send({ message: 'Deslogado com sucesso' })
 })
 
 
-server.post('/delete', async (request, reply) => {
+server.post('/delete', { preHandler: [server.authenticate] }, async (request, reply) => {
     //apagar usuário
     const {username, password, id} = request.body
     const login = await banco.loginUser(username)
@@ -101,6 +101,11 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
 
     await task.lookTasks(id)
     return reply.code(200).send({message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`})
+})
+
+//verificar se o user sta logado
+server.get('/me', { preHandler: [server.authenticate] }, async (request, reply) => {
+    return { userID: request.user.id}
 })
 
 server.listen({
