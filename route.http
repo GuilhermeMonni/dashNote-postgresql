@@ -25,12 +25,3 @@ Content-Type: application/json
     "password": "12345",
     "id": "4b0ec83d-393f-41dd-acb2-da87d3d6cc5a"
 }
-
-###
-POST http://localhost:3000/task
-Content-Type: application/json
-
-{
-    "username": "nathalia",
-    "id": "af0780b3-1867-48ef-b6bd-fea8d2e2cd1f"
-}
