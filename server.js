@@ -87,12 +87,15 @@ server.post('/delete', { preHandler: [server.authenticate] }, async (request, re
 })
 
 //tarefas
-server.post('/task', { preHandler: [server.authenticate] }, async (request, reply) => { //buscar tarefas do usuario
+server.post('/task',/* { preHandler: [server.authenticate] },*/ async (request, reply) => { //buscar tarefas do usuario
     const {username, id} = request.body
     let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
 
     await task.lookTasks(id)
-    return reply.code(200).send({message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`})
+    reply.code(200).send({message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`})
+
+    const tasks = Array.from(table)
+    return (tasks)
 })
 
 //verificar se o user sta logado
