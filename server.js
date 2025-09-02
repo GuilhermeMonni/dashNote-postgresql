@@ -1,6 +1,6 @@
 import fastify from 'fastify'
 import { bancoDados } from './bancoDados.js'
-import { tasks } from './tasks.js'
+import { tasks, tasks } from './tasks.js'
 import dotenv from 'dotenv'
 import fastifyJwt from '@fastify/jwt'
 import bcrypt from 'bcrypt'
@@ -92,10 +92,12 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
     let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
 
     await task.lookTasks(id)
-    reply.code(200).send({message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`})
-
     const tasks = Array.from(table)
-    return (tasks)
+
+    return reply.code(200).send({
+        message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`,
+        tasks 
+    })
 })
 
 //verificar se o user sta logado
