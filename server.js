@@ -87,7 +87,7 @@ server.post('/delete', { preHandler: [server.authenticate] }, async (request, re
 })
 
 //tarefas
-server.post('/task',/* { preHandler: [server.authenticate] },*/ async (request, reply) => { //buscar tarefas do usuario
+server.post('/task', { preHandler: [server.authenticate] }, async (request, reply) => { //buscar tarefas do usuario
     const {username, id} = request.body
     let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
 
