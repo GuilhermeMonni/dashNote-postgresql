@@ -92,15 +92,15 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
     let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
 
     await task.lookTasks(id)
-    const tasks = Array.from(table)
+    const tasksArray = Array.from(table)
 
     return reply.code(200).send({
         message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`,
-        tasks 
+        tasksArray 
     })
 })
 
-//verificar se o user sta logado
+//verificar se o user esta logado
 server.get('/me', { preHandler: [server.authenticate] }, async (request, reply) => {
     return { userID: request.user.id}
 })
