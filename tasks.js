@@ -5,6 +5,6 @@ export class tasks{
     async lookTasks(id){
        const table = await sql`select * from tasks where id = ${id}`
 
-       return console.log(table)
+       return table
     }
 }
