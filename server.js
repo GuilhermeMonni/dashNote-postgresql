@@ -1,6 +1,6 @@
 import fastify from 'fastify'
 import { bancoDados } from './bancoDados.js'
-import { tasks, tasks } from './tasks.js'
+import { tasks } from './tasks.js'
 import dotenv from 'dotenv'
 import fastifyJwt from '@fastify/jwt'
 import bcrypt from 'bcrypt'
