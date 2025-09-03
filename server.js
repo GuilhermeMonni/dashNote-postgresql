@@ -91,8 +91,7 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
     const {username, id} = request.body
     let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
 
-    await task.lookTasks(id)
-    const tasksArray = Array.from(table)
+    const tasksArray = await task.lookTasks(id)
 
     return reply.code(200).send({
         message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`,
