@@ -11,7 +11,7 @@ POST http://localhost:3000/cadastrar
 Content-Type: application/json
 
 {
-    "username": "nathy",
+    "username": "teste",
     "password": "12345",
     "description": "teste"
 }
@@ -33,4 +33,16 @@ Content-Type: application/json
 {
     "username": "guilherme",
     "id": "c4b2b3f5-12d5-41cb-a892-48011665ed1a"
+}
+
+###
+POST http://localhost:3000/addTask
+Content-Type: application/json
+
+{
+    "id": "c4b2b3f5-12d5-41cb-a892-48011665ed1a",
+    "username": "guilherme",
+    "addTask": "Adicionando task nova",
+    "state": "a fazer",
+    "date": "2025-09-20 00:00:00"
 }

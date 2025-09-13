@@ -67,7 +67,7 @@ server.post('/login', async (request, reply) => { //login do user
     }) 
 })
 
-server.post('/logout', { preHandler: [server.authenticate] }, (req, reply) => {
+server.post('/logout', { preHandler: [server.authenticate] }, (req, reply) => { //logout user
   reply.clearCookie('token', { path: '/' })
   reply.send({ message: 'Deslogado com sucesso' })
 })
@@ -97,6 +97,17 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
         message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`,
         tasksArray 
     })
+})
+
+server.post('/addTask', async(request, reply) => { //adicionar task
+    const {id, username, addTask, state, date} = request.body
+    let usernameFix = username.charAt(0).toUpperCase() + username.slice(1)
+
+    const userAddTask = await task.addTasks(id, username, addTask, state, date)
+
+   return reply.code(201).send({
+        message: `Olá ${usernameFix}, sua tarefa foi adicionada com sucesso.`
+    }) 
 })
 
 //verificar se o user esta logado
