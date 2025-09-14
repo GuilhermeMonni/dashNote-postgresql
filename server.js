@@ -99,7 +99,7 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
     })
 })
 
-server.post('/addTask', async(request, reply) => { //adicionar task
+server.post('/addTask', { preHandler: [server.authenticate] }, async(request, reply) => { //adicionar task
     const {id, username, addTask, state, date} = request.body
     let usernameFix = username.charAt(0).toUpperCase() + username.slice(1)
 

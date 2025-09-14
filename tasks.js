@@ -10,7 +10,7 @@ export class tasks{
 
     //criar tarefas
     async addTasks(id, username, addTask, state, date){
-        const userAddTask = await sql`insert into tasks (id, username, tasks, state, date)
+        const userAddTask = await sql`insert into tasks (id, username, task, state, date)
         values (${id}, ${username}, ${addTask}, ${state}, ${date})`
 
         return userAddTask
