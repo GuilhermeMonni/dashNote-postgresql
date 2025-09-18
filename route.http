@@ -42,7 +42,7 @@ Content-Type: application/json
 {
     "id": "c4b2b3f5-12d5-41cb-a892-48011665ed1a",
     "username": "guilherme",
-    "addTask": "Adicionando task nova",
+    "addTask": "Teste adicionando task",
     "state": "open",
     "date": "2025-09-20 00:00:00"
 }
