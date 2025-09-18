@@ -100,10 +100,10 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
 })
 
 server.post('/addTask', async(request, reply) => { //adicionar task
-    const {id, username, addTask, state, date} = request.body
+    const {id, idTask, addTask, state, date, username} = request.body
     let usernameFix = username.charAt(0).toUpperCase() + username.slice(1)
 
-    const userAddTask = await task.addTasks(id, username, addTask, state, date)
+    const userAddTask = await task.addTasks(id, idTask, addTask, state, date, username)
 
    return reply.code(201).send({
         message: `Olá ${usernameFix}, sua tarefa foi adicionada com sucesso.`

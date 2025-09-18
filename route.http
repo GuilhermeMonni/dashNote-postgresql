@@ -41,6 +41,7 @@ Content-Type: application/json
 
 {
     "id": "c4b2b3f5-12d5-41cb-a892-48011665ed1a",
+    "idTask": "c4b2b3f5-12d5-41cb-a892-48011665ed1a",
     "username": "guilherme",
     "addTask": "Teste adicionando task",
     "state": "open",

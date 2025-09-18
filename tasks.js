@@ -9,10 +9,15 @@ export class tasks{
     }
 
     //criar tarefas
-    async addTasks(id, username, addTask, state, date){
-        const userAddTask = await sql`insert into tasks (id, username, task, state, date)
-        values (${id}, ${username}, ${addTask}, ${state}, ${date})`
+    async addTasks(id, idTask, addTask, state, date, username){
+        const userAddTask = await sql`insert into tasks (id, id_task, task, state, date, username)
+        values (${id}, ${idTask}, ${addTask}, ${state}, ${date}, ${username})`
 
         return userAddTask
+    }
+
+    //apagar tarefas
+    async removeTask(){
+        
     }
 }
