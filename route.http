@@ -40,8 +40,7 @@ POST http://localhost:3000/addTask
 Content-Type: application/json
 
 {
-    "id": "c4b2b3f5-12d5-41cb-a892-48011665ed1a",
-    "idTask": "c4b2b3f5-12d5-41cb-a892-48011665ed1a",
+    "idTask": "79209bc8-d497-411d-aba3-0b591de4f2ed",
     "username": "guilherme",
     "addTask": "Teste adicionando task",
     "state": "open",
