@@ -88,8 +88,14 @@ server.post('/delete', { preHandler: [server.authenticate] }, async (request, re
 
 //tarefas
 server.post('/task', { preHandler: [server.authenticate] }, async (request, reply) => { //buscar tarefas do usuario
-    const username = request.body
+    const { username, id} = request.body
     let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
+
+    if(!id){
+        return reply.code(401).send({
+            message: 'Usuário não autenticado.'
+        })
+    }
 
     const tasksArray = await task.lookTasks(username)
 

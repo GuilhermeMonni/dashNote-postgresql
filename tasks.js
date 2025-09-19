@@ -1,11 +1,6 @@
 import { sql } from './banco.js'
 
 export class tasks{
-    //buscar user do user
-    async searchId(username){
-
-    }
-
     //tarefas dos usuarios
     async lookTasks(username){
        const table = await sql`select * from tasks where username = ${username}`
