@@ -59,7 +59,7 @@ server.post('/login', async (request, reply) => { //login do user
 
     const token = server.jwt.sign({ id: login.id, username: login.username })
 
-    reply.send({
+    reply.code(200).send({
         message: 'Login feito com sucesso',
         username: login.username,
         id: login.id,
