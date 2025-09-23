@@ -2,22 +2,24 @@ import { sql } from './banco.js'
 
 export class tasks{
     //tarefas dos usuarios
-    async lookTasks(username){
-       const table = await sql`select * from tasks where username = ${username}`
+    async lookTasks(id){
+       const table = await sql`select * from task where task_userID = ${id}`
 
        return Array.from(table)
     }
 
     //criar tarefas
-    async addTasks(idTask, addTask, state, date, username){
-        const userAddTask = await sql`insert into tasks (id_task, task, state, date, username)
-        values (${idTask}, ${addTask}, ${state}, ${date}, ${username})`
+    async addTasks(idTask, id, task, taskDate, taskState){
+        const userAddTask = await sql`insert into task (task_id, task_userID, task_task, task_date, task_state)
+        values (${idTask}, ${id}, ${task}, ${taskDate}, ${taskState})`
 
         return userAddTask
     }
 
     //apagar tarefas
-    async removeTask(){
-        
+    async deleteTask(idTask){
+        const userDeleteTask = await sql`delete * from task where task_id = ${idTask}`
+
+        return console.log('Tarefa excluida com sucesso.')
     }
 }

@@ -88,7 +88,7 @@ server.post('/delete', { preHandler: [server.authenticate] }, async (request, re
 
 //tarefas
 server.post('/task', { preHandler: [server.authenticate] }, async (request, reply) => { //buscar tarefas do usuario
-    const { username, id} = request.body
+    const { username, id } = request.body
     let usernameFix = username.charAt(0). toUpperCase() + username.slice(1)
 
     if(!id){
@@ -97,7 +97,7 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
         })
     }
 
-    const tasksArray = await task.lookTasks(username)
+    const tasksArray = await task.lookTasks(id)
 
     return reply.code(200).send({
         message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`,
@@ -106,13 +106,12 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
 })
 
 server.post('/addTask', async(request, reply) => { //adicionar task
-    const {idTask, addTask, state, date, username} = request.body
-    let usernameFix = username.charAt(0).toUpperCase() + username.slice(1)
+    const {idTask, id, task, taskDate, taskState} = request.body
 
-    const userAddTask = await task.addTasks(idTask, addTask, state, date, username)
+    const userAddTask = await task.addTasks(idTask, id, task, taskDate, taskState)
 
    return reply.code(201).send({
-        message: `Olá ${usernameFix}, sua tarefa foi adicionada com sucesso.`
+        message: `Sua tarefa foi adicionada com sucesso.`
     }) 
 })
 
