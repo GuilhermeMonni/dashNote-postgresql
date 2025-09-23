@@ -7,7 +7,7 @@ export class bancoDados {
     const id = randomUUID(); //id
     const usernameLowercase = username.toLowerCase()
 
-    await sql`insert into user_table (user_id, user_username, user_password) VALUES (${id}, ${usernameLowercase}, ${passHashed})`
+    await sql`insert into user_table (user_id, user_username, user_pass) VALUES (${id}, ${usernameLowercase}, ${passHashed})`
   }
 
   async verUser(username){ //verificar se existe o user

@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ###
-POST https://dashnote.onrender.com/cadastrar
+POST http://localhost:3000/cadastrar
 Content-Type: application/json
 
 {
