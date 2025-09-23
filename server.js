@@ -26,11 +26,11 @@ server.decorate('authenticate', async (request, reply) => {
 
 //usuarios
 server.post('/cadastrar', async (request, reply) => { //criar usuario
-    const {username, password, description} = request.body
+    const {username, password} = request.body
 
     const passHashed = await bcrypt.hash(password, 10)
 
-    const reqBanco = await banco.createUser(username, passHashed, description)
+    const reqBanco = await banco.createUser(username, passHashed)
 
     console.log(`Usuário criado com sucesso. Seja bem vindo, ${username}!`);
 })
