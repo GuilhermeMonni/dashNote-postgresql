@@ -43,21 +43,21 @@ server.post('/login', async (request, reply) => { //login do user
 
     const login = await banco.loginUser(usernameLowercase) //buscar infos do user digitado
 
-    if(!login){
+    if(!logUser){
         return reply.code(401).send({ message: 'Usuário incorreto!' })
     }
 
-    if(!password || !login.password){
-        return reply.code(400).send({message: 'Senha ausente.'})
+    if(!password || !login.user_pass){
+        return reply.code(400).send({message: 'Digite a senha.'})
     }
 
-    const passDigited = await bcrypt.compare(password, login.password) //verifica senha digitada com a criptografada
+    const passDigited = await bcrypt.compare(password, login.user_pass) //verifica senha digitada com a criptografada
 
     if(!passDigited){
-        return reply.code(401).send({ message: 'Senha incorreta!' })
+        return reply.code(401).send({ message: 'Usuário ou senha incorreto.' })
     }
 
-    const token = server.jwt.sign({ id: login.id, username: login.username })
+    const token = server.jwt.sign({ id: login.user_id, username: login.user_username })
 
     reply.code(200).send({
         message: 'Login feito com sucesso',
