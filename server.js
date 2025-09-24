@@ -61,8 +61,8 @@ server.post('/login', async (request, reply) => { //login do user
 
     reply.code(200).send({
         message: 'Login feito com sucesso',
-        username: login.username,
-        id: login.id,
+        username: login.user_username,
+        id: login.user_id,
         token
     }) 
 })
