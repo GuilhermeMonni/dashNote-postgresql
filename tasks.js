@@ -5,6 +5,10 @@ export class tasks{
     async lookTasks(id){
        const table = await sql`select * from task where task_userID = ${id}`
 
+       if(!table.task_id){
+        return console.log('Nenhuma tarefa adicionada!')
+       }
+
        return Array.from(table)
     }
 
