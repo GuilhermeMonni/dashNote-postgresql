@@ -99,6 +99,12 @@ server.post('/task', { preHandler: [server.authenticate] }, async (request, repl
 
     const tasksArray = await task.lookTasks(id)
 
+    if(!tasksArray){
+        return reply.code(200).send({
+            message: 'Nenhuma tarefa para este usuário.'
+        })
+    }
+
     return reply.code(200).send({
         message: `Seja bem-vindo, ${usernameFix}. Boa sorte em suas tarefas.`,
         tasksArray 
