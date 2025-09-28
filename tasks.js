@@ -3,7 +3,11 @@ import { sql } from './banco.js'
 export class tasks{
     //tarefas dos usuarios
     async lookTasks(id){
-       const table = await sql`select * from task where task_userID = ${id}`
+       const table = await sql`select * from task where task_userid = ${id}`
+
+       if(table.length == ''){
+        return console.log('Nenhuma tarefa disponivel.')
+       }
 
        return Array.from(table)
     }
