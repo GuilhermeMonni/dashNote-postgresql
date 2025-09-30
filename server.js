@@ -100,7 +100,7 @@ server.post('/task', async (request, reply) => { //buscar tarefas do usuario
     const tasksArray = await task.lookTasks(id)
 
     if(!tasksArray){
-        return reply.code(200).send({
+        return reply.code(204).send({
             message: 'Nenhuma tarefa para este usuário.'
         })
     }

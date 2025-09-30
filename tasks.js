@@ -6,7 +6,7 @@ export class tasks{
        const table = await sql`select * from task where task_userid = ${id}`
 
        if(table.length == ''){
-        return console.log('Nenhuma tarefa disponivel.')
+        return console.error('Nenhuma tarefa disponivel.')
        }
 
        return Array.from(table)
