@@ -112,9 +112,9 @@ server.post('/task', async (request, reply) => { //buscar tarefas do usuario
 })
 
 server.post('/addTask', async(request, reply) => { //adicionar task
-    const {idTask, id, task, taskDate, taskState} = request.body
+    const {task_id, task_userid, task_task, task_date, task_state} = request.body
 
-    const userAddTask = await task.addTasks(idTask, id, task, taskDate, taskState)
+    const userTask = await task.addTasks(task_id, task_userid, task_task, task_date, task_state)
 
    return reply.code(201).send({
         message: `Sua tarefa foi adicionada com sucesso.`
