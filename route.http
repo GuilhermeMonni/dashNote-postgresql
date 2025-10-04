@@ -39,9 +39,9 @@ POST http://localhost:3000/addTask
 Content-Type: application/json
 
 {
-    "task_id": "79209bc8-d497-411d-aba3-0b591de4f2ed",
+    "task_id": "79209bc8-d497-411d-aba3-0b591de4f2de",
     "task_userid": "6b55520d-cfc3-4b53-bd50-7370fb7963e7",
-    "task_task": "Teste adicionando task",
+    "task_task": "Teste adicionando segunda task",
     "task_date": "2025-09-30 00:00:00",
     "task_state": "open"
 }
