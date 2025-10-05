@@ -5,7 +5,7 @@ export class tasks{
     async lookTasks(id){
        const table = await sql`select * from task where task_userid = ${id}`
 
-       if(table.length == ''){
+       if(table.length === 0){
         return console.error('Nenhuma tarefa disponivel.')
        }
 
