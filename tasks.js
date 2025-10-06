@@ -15,9 +15,11 @@ export class tasks{
     //criar tarefas
     async addTasks(task_id, task_userid, task_task, task_date, task_state){
         const userAddTask = await sql`insert into task (task_id, task_userid, task_task, task_date, task_state)
-        values (${task_id}, ${task_userid}, ${task_task}, ${task_date}, ${task_state})`
+        values (${task_id}, ${task_userid}, ${task_task}, ${task_date}, ${task_state})` //add task
 
-        return userAddTask
+       const table = await sql`select * from task where task_userid = ${task_userid}` //lookTask
+
+        return Array.from(table)
     }
 
     //apagar tarefas

@@ -31,7 +31,7 @@ Content-Type: application/json
 
 {
     "username": "guilherme",
-    "id": "c4b2b3f5-12d5-41cb-a892-48011665ed1a"
+    "id": "6b55520d-cfc3-4b53-bd50-7370fb7963e7"
 }
 
 ###
@@ -39,9 +39,9 @@ POST http://localhost:3000/addTask
 Content-Type: application/json
 
 {
-    "task_id": "79209bc8-d497-411d-aba3-0b591de4f2de",
+    "task_id": "6d9c7b26-f9ee-1784-bbb2-853d05c2492a",
     "task_userid": "6b55520d-cfc3-4b53-bd50-7370fb7963e7",
-    "task_task": "Teste adicionando segunda task",
+    "task_task": "Teste adicionando 7º task",
     "task_date": "2025-09-30 00:00:00",
     "task_state": "open"
 }
