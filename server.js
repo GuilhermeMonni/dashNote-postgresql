@@ -124,6 +124,10 @@ server.post('/addTask', async(request, reply) => { //adicionar task
     }) 
 })
 
+server.post('/remTask', async (request, reply) => { //remove task
+    
+})
+
 //verificar se o user esta logado
 server.get('/me', { preHandler: [server.authenticate] }, async (request) => {
     return { userID: request.user.id}
