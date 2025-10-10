@@ -19,8 +19,8 @@ export class tasks{
     }
 
     //apagar tarefas
-    async deleteTask(idTask){
-        const userDeleteTask = await sql`delete * from task where task_id = ${idTask}`
+    async deleteTask(task_id){
+        const userDeleteTask = await sql`delete from task where task_id = ${task_id}`
 
         return console.log('Tarefa excluida com sucesso.')
     }

@@ -124,8 +124,14 @@ server.post('/addTask', async(request, reply) => { //adicionar task
     }) 
 })
 
-server.post('/remTask', async (request, reply) => { //remove task
-    
+server.delete(`/deleteTask/:task_id`, async (request, reply) => { //remove task
+    const { task_id } = request.params
+
+    const removeTask = await task.deleteTask(task_id)
+
+    return reply.code(204).send({
+        message: 'Tarefa excluida com sucesso.',
+    })
 })
 
 //verificar se o user esta logado
