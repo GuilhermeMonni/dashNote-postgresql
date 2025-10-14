@@ -24,4 +24,13 @@ export class tasks{
 
         return console.log('Tarefa excluida com sucesso.')
     }
+
+    //editar task
+    async editTask(task_id, task_task){
+        const userEditTask = await sql`update task set task_task = ${task_task} where task_id = ${task_id}`
+
+        console.log('Tarefa atualizada com sucesso.')
+
+        return userEditTask.task_task
+    }
 }

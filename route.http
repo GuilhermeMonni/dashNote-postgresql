@@ -46,4 +46,13 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3000/editTask
+Content-Type: application/json
+
+{
+    "task_id": "a1672f23-b99d-4572-931d-e3497cca6f6d",
+    "task_task": "teste edit 2"
+}
+
+###
 DELETE http://localhost:3000/deleteTask/5b6115b6-7b8c-4790-8d5f-1469da5682f7

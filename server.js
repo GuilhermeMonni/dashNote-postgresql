@@ -134,6 +134,16 @@ server.delete(`/deleteTask/:task_id`, async (request, reply) => { //remove task
     })
 })
 
+server.post('/editTask', async (request, reply) => { //edit task
+    const { task_id, task_task } = request.body
+
+    const editTask = await task.editTask(task_id, task_task)
+
+    return reply.code(200).send({
+        message: 'Tarefa editada com sucesso.'
+    })
+})
+
 //verificar se o user esta logado
 server.get('/me', { preHandler: [server.authenticate] }, async (request) => {
     return { userID: request.user.id}
